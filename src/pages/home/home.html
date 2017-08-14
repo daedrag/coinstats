@@ -7,7 +7,22 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+
+  <div *ngIf="filtered && filtered.length != 0">
+    <ion-list>
+      <ion-list-header>
+        Filtered coins: {{filtered.length}}
+      </ion-list-header>
+      <coin-item *ngFor="let item of filtered" [coin]="item">
+      </coin-item>
+    </ion-list>
+  </div>
+
   <ion-list>
+    <ion-list-header>
+      All coins
+    </ion-list-header>
     <coin-item *ngFor="let item of coinList" [coin]="item">
     </coin-item>
   </ion-list>

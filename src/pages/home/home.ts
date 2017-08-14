@@ -16,6 +16,8 @@ export class HomePage {
   total: number;
   current: number;
 
+  filtered: Array<any>; 
+
   constructor(public navCtrl: NavController, public coinService: CoinServiceProvider) {
     this.baseUrl = this.coinService.baseUrl;
 
@@ -43,5 +45,19 @@ export class HomePage {
 
     _.each(this.fullCoinList.slice(start-1, end-1), item => this.coinList.push(item));
     this.current = this.current + 10;
+  }
+
+  search(event: any) {
+    // set val to the value of the searchbar
+    let val = event.target.value;
+
+    // if the value is string shorter than 3 chars, don't filter the items
+    if (val && val.trim().length > 2) {
+      this.filtered = this.fullCoinList.filter(item => {
+        return (item.FullName.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    } else {
+      this.filtered = [];
+    }
   }
 }
