@@ -1,0 +1,15 @@
+<ion-item-sliding>
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="baseUrl + coin.ImageUrl">
+      </ion-avatar>
+      <h2>{{coin.Name}}</h2>
+      <p>{{coin.FullName}}</p>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button color="secondary">
+        <ion-icon name="pricetag"></ion-icon>
+        {{price}}
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>

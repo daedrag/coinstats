@@ -9,21 +9,21 @@ import * as _ from "underscore";
 })
 export class HomePage {
 
-  coinList: Array<any> = [];
+  fullCoinList: Array<any> = [];
+  coinList: Array<any>;
+  baseUrl: string;
 
   constructor(public navCtrl: NavController, public coinService: CoinServiceProvider) {
+    this.baseUrl = this.coinService.baseUrl;
+
     this.coinService.getCoinList()
       .then(data => {
-        this.coinList = _.first(
-          _.sortBy(
-            _.map(data, (value, id) => value),
-            (item: any) => item.SortOrder  // sort by "SortOrder" attribute
-          ),
-          100  // first 100 items
+        this.fullCoinList = _.sortBy(
+          _.map(data, (value, id) => value),
+          (item: any) => item.SortOrder  // sort by "SortOrder" attribute
         );
-        console.log(this.coinList);
+        this.coinList = _.first(this.fullCoinList, 10);
       })
       .catch(error => console.error(error));
   }
-
 }

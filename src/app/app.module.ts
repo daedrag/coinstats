@@ -8,11 +8,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CoinServiceProvider } from '../providers/coin-service/coin-service';
+import { CoinItemComponent } from "../components/coin-item/coin-item";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    CoinItemComponent,
   ],
   imports: [
     BrowserModule,
