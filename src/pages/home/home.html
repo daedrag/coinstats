@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Coin List
+      Coin List [ {{current}} / {{total}} ]
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,4 +11,6 @@
     <coin-item *ngFor="let item of coinList" [coin]="item">
     </coin-item>
   </ion-list>
+
+  <button *ngIf="current<total" ion-button full outline (click)="loadNext()">Load more coins</button>
 </ion-content>

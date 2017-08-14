@@ -16,12 +16,15 @@ export class CoinItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.coinService.getPriceInUSD(this.coin.Name)
-    .then(data => {
-      console.log(data);
-      this.price = data['USD'];
-    })
-    .catch(err => console.error(err));
+    this.fetchPrice();
   }
 
+  fetchPrice() {
+    // console.log("Fetching price for " + this.coin.Name);
+    this.coinService.getPriceInUSD(this.coin.Name)
+      .then(data => {
+        this.price = data['USD'];
+      })
+      .catch(err => console.error(err));
+  }
 }
