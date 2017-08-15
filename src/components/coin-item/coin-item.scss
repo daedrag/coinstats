@@ -1,5 +1,13 @@
 .coin-item {
-    ion-badge {
-      font-size: 16px;
-    }
+  ion-badge {
+    font-size: 16px;
+    font-weight: 500;
+    width: 200px;
+    padding: 10px;
   }
+  ion-icon {
+    font-size: 30px;
+    margin-right: 16px;
+    align-self: center;
+  }
+}

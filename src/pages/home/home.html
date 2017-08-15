@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Coin List [ {{current}} / {{total}} ]
+      Coin List
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -21,7 +21,7 @@
 
   <ion-list>
     <ion-list-header>
-      All coins
+      All coins {{ current ? '( ' + current + ' of ' + total + ' )' : '' }}
     </ion-list-header>
     <coin-item *ngFor="let item of coinList" [coin]="item">
     </coin-item>

@@ -1,16 +1,23 @@
-<ion-item-sliding>
-  <ion-item class="coin-item">
+<ion-item-sliding #slidingItem>
+  <ion-item>
     <ion-avatar item-start>
       <img [src]="baseUrl + coin.ImageUrl">
     </ion-avatar>
     <h2>{{coin.Name}}</h2>
     <p>{{coin.FullName}}</p>
-    <ion-badge *ngIf="price" color="secondary" item-end>$ {{price}}</ion-badge>
+    <ion-row class="coin-item" item-end>
+      <ion-icon color="minor" *ngIf="autoRefresh" [name]="countDownNow % 2 == 0 ? 'cloud' : 'cloud-download'"></ion-icon>
+      <ion-badge *ngIf="price" [color]="rising ? 'secondary' : 'danger'">$ {{price}}</ion-badge>
+    </ion-row>
   </ion-item>
   <ion-item-options side="right">
-    <button ion-button color="secondary" (click)="fetchPrice($event)">
-      <ion-icon name="pricetag"></ion-icon>
-      Refresh
+    <button ion-button color="primary" (click)="toggleAutoRefresh($event)">
+      <ion-icon [name]="autoRefresh ? 'eye' : 'eye-off'"></ion-icon>
+      {{autoRefresh ? 'Auto' : 'Manual'}}
+    </button>
+    <button *ngIf="!autoRefresh" ion-button color="secondary" (click)="fetchPrice($event)">
+      <ion-icon name="refresh-circle"></ion-icon>
+      Fetch
     </button>
   </ion-item-options>
 </ion-item-sliding>
